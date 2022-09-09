@@ -1,24 +1,30 @@
-#include <stdbool.h>
-
-bool findc_c(char *s, char ch) {
-	bool found = false;
+// Returns the index of ch in s, or -1 if not found
+int findc_c(char *s, char ch) {
+	int index = 0;
 	while (*s != '\0') {
 		if (*s == ch) {
-			found = true;
+			// early return if found
+			return index; 
 		}
-		s++;
+		s++; // walk s
+		index++; // walk found index
 	}
-	return found;
+	// if we reach this, not found
+	return -1;
 }
 
 int countc_c(char *s, char ch) {
 	int count = 0;
 	while (*s != '\0') {
-		bool found = findc_c(s, ch);
-		if (found) {
+		int index = findc_c(s, ch);
+		if (index == -1) {
+			// not found, break loop
+			break;
+		} else {
 			count++;
+			 // walk s forward past the match
+			s += index + 1;
 		}
-		s++;
 	}
 	return count;
 }
