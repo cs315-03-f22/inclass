@@ -12,6 +12,11 @@ uint32_t get_bitseq_c(uint32_t num, int start, int end) {
         mask = 0xFFFFFFFF;
     } else {
         mask = (0b1 << len) - 1;
+
+        uint32_t mask2 = 0;
+        for (int i = 0; i < len; i++) {
+            mask2 = mask2 | (1 << i);
+        }
     }
 
     val = val & mask;
