@@ -11,9 +11,9 @@ nomask_s:
 
     li t1, 32           # t2 = 32
     sub t2, t1, a2      # t2 = 32 - end
-    #addi t2, t2, -1     # t2 = 32 - end -1
+    addi t2, t2, -1     # t2 = 32 - end -1
 
-    sll a0, a0, t2      # a0 = num << t2
+    sllw a0, a0, t2     # a0 = num << t2
     sub t2, t1, t0      # t2 = 32 - len
-    srl a0, a0, t2      # a0 = sh_up >> t2
+    srlw a0, a0, t2     # a0 = sh_up >> t2
     ret
