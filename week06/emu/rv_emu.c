@@ -18,8 +18,12 @@ void rv_init(struct rv_state *state, uint32_t *func,
 
 // Phil's approach: helper function for shift-and-mask
 uint32_t get_bits(uint32_t iw, uint32_t start, uint32_t count) {
-    uint32_t mask = (1 << count) - 1;
+    uint32_t mask = (1 << count) - 1;  // 2^n - 1
     return (iw >> start) & mask;
+}
+
+uint32_t get_bit(uint32_t iw, uint32_t which) {
+    return (iw >> which) & 0b1;
 }
 
 void emu_r_type(struct rv_state *state, uint32_t iw) {
