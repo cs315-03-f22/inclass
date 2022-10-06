@@ -74,7 +74,7 @@ static void run_i_format(rv_state *s, uint32_t iw, rv_format fmt) {
     switch (func3) {
         case 0b0:  // addi
             if (fmt == FMT_I_JALR)
-                s->pc = (uint64_t) sum;  // for call/jalr, pc = rs1 + offset
+                s->pc = (uint64_t) sum;  // for ret/jalr, pc = rs1 + offset
             else if (fmt == FMT_I_ARITH)
                 s->regs[rd] = sum;  // arithmetic sum
             break;
