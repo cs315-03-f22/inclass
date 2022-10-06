@@ -42,6 +42,7 @@ void rv_init(rv_state *state, uint32_t *target,
     state->regs[RV_SP] = (uint64_t) &state->stack[STACK_SIZE];
 
     memset(&state->analysis, 0, sizeof(rv_analysis));
+    cache_init(&state->i_cache);
 }
 
 uint64_t rv_emulate(rv_state *state) {

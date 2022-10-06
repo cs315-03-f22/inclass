@@ -1,3 +1,4 @@
+.align 16
 .global merge_sort_s
 .global merge_s
 
