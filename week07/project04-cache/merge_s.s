@@ -1,4 +1,4 @@
-.align 16
+.align 4
 .global merge_s
 
 /* merge_s merges two adjacent sub arrays of 32-bit ints
