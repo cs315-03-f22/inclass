@@ -59,7 +59,10 @@ merge_s:
     mv t2, t0                   # ptr_right = mid + 1
     mv t3, a2                   # t3 is loop index variable
 loop:
-    bgt a3, t3, start_copy      # break if end > i
+    #bgt a3, t3, start_copy      # break if end > i
+    bgt t3, a3, start_copy      # break if i > end
+
+
     slli t4, t3, 2              # t4 is the offset of i
     add t5, a1, t4              # t5 is &aux[i]
 

@@ -1,9 +1,23 @@
 main:
     li sp, 1024
-    addi sp, sp, -64    # alloc 8 64-bit words
-    li t0, 1
+    addi sp, sp, -16
+    li t0, 99
     sd t0, 0(sp)
-    li t0, 3
+    li t0, 33
+    sd t0, 8(sp)
+    mv a0, sp
+    addi sp, sp, -16
+    mv a1, sp
+
+    li a2, 0            # set up start index arg
+    li a3, 1            # set up end index arg
+    jal merge_s
+
+    ld a0, 0(s1)
+    ld a1, 8(s1)    
+
+    unimp
+/*
     sd t0, 8(sp)
     li t0, 5
     sd t0, 16(sp)
@@ -41,8 +55,11 @@ merge_s:
     mv t1, a2                   # t1 is ptr_left
     mv t2, t0                   # ptr_right = mid + 1
     mv t3, a2                   # t3 is loop index variable
+
 loop:
-    bgt a3, t3, start_copy      # break if end > i
+    #bgt a3, t3, start_copy      # break if end > i
+    bgt t3, a3, start_copy      # break if end > i
+
     slli t4, t3, 3              # t4 is the offset of i
     add t5, a1, t4              # t5 is &aux[i]
 
@@ -104,6 +121,8 @@ merge_done:
     a3 is end index
 */
 
+/*
+
 merge_sort_s:
     addi sp, sp, -32            # prologue
     sd ra, (sp)
@@ -130,3 +149,5 @@ done:                           # epilogue
     ld ra, (sp)
     addi sp, sp, 32
     ret
+
+*/
